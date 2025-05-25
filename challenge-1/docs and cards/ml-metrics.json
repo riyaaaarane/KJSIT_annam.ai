@@ -1,0 +1,14 @@
+{
+  "_comment": "This JSON file contains the ml-metrics",
+  "Name": "Riya Rane",
+  "Kaggle Username": "riyaaaarane2507",
+  "Team Name": "KJSIT",
+  "f1 scores": {
+    "_comment": "Here are the class-wise F1-scores",
+    "Alluvial soil": 0.6818181818181818,
+    "Red soil": 0.9906542056074767,
+    "Black Soil": 0.8472906403940886,
+    "Clay soil": 0.9333333333333333
+  },
+  "min_f1_score": 0.6818181818181818
+}
