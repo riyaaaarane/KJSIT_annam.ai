@@ -12,7 +12,7 @@ challenge-2/
 ├── data/
 │   ├── download.sh             # Script to download dataset
 ├── notebooks/
-│   ├── soil_classification.ipynb  # Main notebook (renamed)
+│   ├── soil_classification- part 2.ipynb  # Main notebook (renamed)
 │   └── leaderboard-score/         # F1-score or result logs
 ├── docs and cards/
 │   ├── task2_artitecture.png         # CNN model architecture diagram
@@ -120,7 +120,7 @@ All evaluation metrics are stored in:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/soil-vs-notsoil.git
+git clone https://github.com/your-username/soil_classification- part 2.git
 cd soil-vs-notsoil
 
 # Install dependencies
@@ -134,7 +134,7 @@ pip install -r requirements.txt
 Open the notebook:
 
 ```
-notebooks/soil_vs_notsoil.ipynb
+notebooks/soil_classification- part 2.ipynb
 ```
 
 ➡️ **Run all cells** in sequence to train, validate, and evaluate the model.
