@@ -118,28 +118,21 @@ All evaluation metrics are stored in:
 
 ## 🚀 Running the Project
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/soil_classification- part 2.git
-cd soil-vs-notsoil
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/soil-classification_annam.ai.git
+   cd challenge-2
+2. **Install dependencies**
+   bash
+   Copy
+   Edit
+   pip install -r requirements.txt
+3. **Download dataset**
+   cd data
+   bash download.sh
+4. **Run notebook**
+   Open notebooks/soil-classification- part 2.ipynb and run all cells in order
 
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### (Optional) Generate synthetic non-soil images  
-*This step is already handled in the notebook.*
-
-### Run the notebook
-Open the notebook:
-
-```
-notebooks/soil_classification- part 2.ipynb
-```
-
-➡️ **Run all cells** in sequence to train, validate, and evaluate the model.
-
----
 
 ## ✅ Conclusion
 
