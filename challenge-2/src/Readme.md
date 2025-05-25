@@ -1,70 +1,155 @@
-# 🧪 Soil vs. Not Soil Classification Using CNN
 
-A deep learning-based binary image classification project to distinguish real soil images from synthetically generated "non-soil" images, using Convolutional Neural Networks (CNNs) in TensorFlow/Keras.
+# 🌱 Soil vs Not-Soil Classification - Kaggle Challenge 2025
+
+This repository contains a full pipeline for **binary classification** of soil vs non-soil images using **Convolutional Neural Networks (CNNs)**. The goal is to build a model that can accurately distinguish real soil images from synthetically generated “not soil” images using deep learning and image processing techniques.
 
 ---
 
-## 📌 Introduction
+## 🗂️ Directory Structure
 
-Soil plays a vital role in agriculture, ecology, and land-use planning. Automating the identification of soil versus non-soil images is a key step toward reliable soil classification systems in larger pipelines. In this challenge, we use a CNN-based computer vision pipeline to predict whether a given image depicts soil or not.
+```
+soil-vs-notsoil/
+├── data/
+│   ├── train/                   # Original soil image dataset
+│   ├── generated_not_soil/     # Synthetic non-soil images (generated programmatically)
+│   └── train_labels.csv        # Labels for training images
+├── notebooks/
+│   └── soil_vs_notsoil.ipynb   # Main notebook with data prep, model, training, evaluation
+├── outputs/
+│   ├── confusion_matrix.png    # Final confusion matrix heatmap
+│   └── metrics.json            # Evaluation metrics like F1-scores
+├── README.md                   # Project overview and instructions
+└── requirements.txt            # List of required Python packages
+```
 
-This project leverages both real labeled soil images and synthetically generated "non-soil" images, using color, texture, and spatial patterns for training.
+---
+
+## 📌 Problem Statement
+
+Soil plays a foundational role in agriculture and the environment. This challenge focuses on **automating soil identification from images**. However, rather than classifying soil types, the task here is binary:  
+📷 **Is the given image soil or not soil?**
+
+This can help in building robust systems that **filter irrelevant data** before fine-tuned classification or in preprocessing stages of larger agriculture-based ML pipelines.
+
+---
+
+## 🔄 Data Processing & Augmentation
+
+### 🔍 Preprocessing
+- All images resized to `224x224`
+- Pixel values normalized (`rescale=1./255`)
+- Paths were validated to **avoid loading errors**
+
+### 🎨 Data Augmentation
+Using Keras `ImageDataGenerator`:
+- Horizontal flips
+- Zoom-in transformations
+
+Synthetic **"Not Soil"** images were generated using:
+- Random noise
+- Color stripes
+- Grid overlays
+- Gradients
+- Blobs
+
+This diversity helped the model learn **clear visual distinctions** between soil and artificial patterns.
 
 ---
 
 ## 🧠 Model Architecture
 
-We used a simple yet effective Convolutional Neural Network (CNN) architecture built in Keras:
+We implemented a **custom CNN** using TensorFlow/Keras with the following architecture:
 
-- **Input Shape**: 224x224 RGB images  
-- **Layers**:
-  - Conv2D → ReLU → MaxPooling2D  
-  - Conv2D → ReLU → MaxPooling2D  
-  - Flatten → Dense → Dropout  
-  - Final Dense with Sigmoid activation for binary classification  
-- **Optimizer**: Adam  
-- **Loss Function**: Binary Crossentropy  
-- **Metrics**: Accuracy  
+```
+Conv2D → ReLU → MaxPooling  
+Conv2D → ReLU → MaxPooling  
+Flatten → Dense → Dropout → Dense (Sigmoid)
+```
 
-### 🧱 Model Summary (Code Snippet)
+📐 **Input shape**: `(224, 224, 3)`  
+🧮 **Output**: Binary classification (1 = Soil, 0 = Not Soil)
 
+---
+
+## 🚧 Challenges Faced & Solutions
+
+### ⚠️ Low F1 Score  
+To improve generalization:
+- We applied **stronger data augmentation**
+- Used **class weights** to handle imbalance
+
+✅ This helped improve the F1 scores for both soil and not-soil classes.
+
+---
+
+### ❌ Invalid Image Paths  
+We encountered this warning:  
+```
+UserWarning: Found 8 invalid image filename(s)
+```
+
+✅ **Fix**:
 ```python
-model = Sequential([
-    Conv2D(32, (3, 3), activation='relu', input_shape=(224, 224, 3)),
-    MaxPooling2D(2, 2),
-    Conv2D(64, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-    Flatten(),
-    Dense(128, activation='relu'),
-    Dropout(0.5),
-    Dense(1, activation='sigmoid')
-])
+train_df = train_df[train_df['full_path'].apply(os.path.exists)]
+val_df = val_df[val_df['full_path'].apply(os.path.exists)]
+```
+
+This ensured that only valid image paths were passed to the data generators.
 
 ---
 
-## 🗂️ Dataset Preparation
+## 📊 Evaluation
 
-- **Soil Images**: Real soil images from 4 classes (treated as "Soil")  
-- **Non-Soil Images**: 500 synthetic images generated using random patterns *(noise, gradients, stripes, grids, blobs)* via **NumPy** and **OpenCV**
+We used `classification_report` and `confusion_matrix` for evaluation.  
+Below is the **confusion matrix** visualized from validation predictions:
+
+![Confusion Matrix](outputs/confusion_matrix.png)
+
+| Metric         | Value   |
+|----------------|---------|
+| F1 (Soil)      | 0.94 ✅ |
+| F1 (Not Soil)  | 0.93 ✅ |
+| **Min F1**     | **0.93** 🔥 |
+
+All evaluation metrics are stored in:  
+📄 `outputs/metrics.json`
 
 ---
 
-## 🧼 Image Preprocessing
+## 🚀 Running the Project
 
-- Resizing to **224×224**
-- Normalizing pixel values
-- Augmentation: `zoom_range`, `horizontal_flip` to improve generalization
+```bash
+# Clone the repository
+git clone https://github.com/your-username/soil-vs-notsoil.git
+cd soil-vs-notsoil
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### (Optional) Generate synthetic non-soil images  
+*This step is already handled in the notebook.*
+
+### Run the notebook
+Open the notebook:
+
+```
+notebooks/soil_vs_notsoil.ipynb
+```
+
+➡️ **Run all cells** in sequence to train, validate, and evaluate the model.
 
 ---
 
-## 📈 Data Augmentation
+## ✅ Conclusion
 
-To make the model more robust to image variability (lighting, orientation, scale), we used:
+This project showed how combining **synthetic data generation** with **CNNs** and **augmentation techniques** can build a **robust binary soil classifier**. Even with limited real-world "not soil" samples, we effectively taught the model to ignore noise and artificial distractions.
 
-```python
-ImageDataGenerator(
-    rescale=1./255,
-    zoom_range=0.2,
-    horizontal_flip=True
-)
+---
 
+## 🧩 Future Improvements
+
+- Add **Grad-CAM** to visualize CNN attention regions  
+- Use **transfer learning** with pre-trained models like ResNet50  
+- Generate **more realistic non-soil data** (e.g., natural scenery, man-made textures)  
+- Explore **autoencoders or outlier detection** to better detect non-soil images  
