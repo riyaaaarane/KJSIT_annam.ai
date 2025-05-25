@@ -6,20 +6,20 @@ This repository contains the complete solution to a soil classification task as 
 
 ## 🗂️ Directory Structure
 
+```
 challenge-1/
 ├── data/
-│ └── download.sh # Script to download dataset
-│
-├── docs and cards/
-│ ├── artitecture.png # CNN model architecture diagram
-│ └── ml-metrics.json # Model evaluation metrics (min F1-score etc.)
-│
+│   ├── download.sh             # Script to download dataset
 ├── notebooks/
-│ ├── leaderboard-score # Scoring file (F1-score or result logs)
-│ ├── soil-classification.ipynb# Main notebook with model training & evaluation
-│ └── src/ # (Optional) additional scripts/helpers
-│
-└── requirements.txt # Required Python packages
+│   ├── soil_classification.ipynb  # Main notebook (renamed)
+│   └── leaderboard-score/         # F1-score or result logs
+├── docs and cards/
+│   ├── task1_artitecture.png         # CNN model architecture diagram
+│   ├── ml-metrics.json         # Model evaluation metrics (min F1-score etc.)
+├── README.md                   # Project overview and usage guide
+└── requirements.txt            # List of required Python packages
+
+```
 
 
 ---
