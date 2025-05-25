@@ -1,1 +1,12 @@
+{
+  "_comment": "This JSON file contains the ml-metrics for leaderboard evaluation",
+  "Name": "Riya Rane ",
+  "Kaggle Username": "riyaaaarane2507",
+  "Team Name": "KJSIT",
+  "f1 scores": {
+    "_comment": "Class-wise F1 scores for binary soil classification",
+    "Soil": 0.9938,
+    "Not Soil": 0.9811
+  }
+}
 
