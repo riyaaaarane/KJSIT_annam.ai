@@ -1,7 +1,0 @@
-# Base libraries (preinstalled on Kaggle, listed here for reproducibility)
-numpy
-pandas
-matplotlib
-tqdm
-Pillow
-scikit-learn
