@@ -80,7 +80,7 @@ Conv2D → ReLU → MaxPooling → Conv2D → ReLU → MaxPooling → Flatten �
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your-username/soil-classification-2025.git
+   git clone https://github.com/your-username/soil-classification_annam.ai.git
    cd challenge-1
 2. **Install dependencies**
    bash
