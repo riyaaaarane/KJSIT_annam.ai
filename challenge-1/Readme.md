@@ -56,7 +56,7 @@ Custom CNN:
 Conv2D → ReLU → MaxPooling → Conv2D → ReLU → MaxPooling → Flatten → Dense → Dropout → Output (softmax)
 
 
-> Diagram: See `docs and cards/artitecture.png`
+> Diagram: See `docs and cards/task1_artitecture.png`
 
 ### 📊 Evaluation
 - Used `classification_report` & `confusion_matrix`
